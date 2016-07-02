@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            .div {
+                height: 100px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1><span class="label label-info">DEMO 4</span></h1>
+        <br><br><br>
+        
+        
+        <div class="well div" id="well">
+            
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+
+        <script type="text/babel">
+        var Text = React.createClass({
+            getInitialState: function() {
+                return {cur_time: 0};
+            },
+            request: function() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://xxx",
+                    success: function(data){
+                        this.setState({cur_time: data.timestamp});
+                    }.bind(this),
+                    complete: function(){
+                        this.setState({cur_time: Date.parse(new Date()) / 1000});
+                    }.bind(this)
+                });
+            },
+            componentDidMount: function(){
+                setInterval(this.request, 1000);
+            },
+            render: function() {
+                return (
+                    <div className="col-xs-12">
+                        当前时间{this.state.cur_time}
+                        <div className={ this.state.cur_time % 2 == 0?"hidden": "col-xs-6 alert alert-success"}>
+                            <span>最后一位奇数</span>
+                        </div>
+                        <div className={ this.state.cur_time % 2 != 0?"hidden": "col-xs-6 alert alert-danger"}>
+                            <span>最后一位偶数</span>
+                        </div>
+                    </div>
+                );
+            }
+        });
+        
+        ReactDOM.render(
+            <Text></Text>,
+            document.getElementById('well')
+        );
+
+        </script>
+    </body>
+</html>

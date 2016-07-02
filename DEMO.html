@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <h1><span class="label label-info">DEMO 1</span></h1>
+        <br><br><br>
+        
+        
+        <div class="well" id="well">
+            
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+
+        <script type="text/babel">
+        var Text = React.createClass({
+            render: function() {
+                return (
+                    <div className="a">
+                        大家好，我是用react渲染出来的！
+                    </div>
+                );
+            }
+        });
+        
+        ReactDOM.render(
+            <Text></Text>,
+            document.getElementById('well')
+        );
+
+        
+/*  以下是编译后的js
+        var Text = React.createClass({
+            displayName: "Text",
+
+            render: function render() {
+                return React.createElement(
+                    "div",
+                    { className: "commentBox" },
+                    "Hello, world! I am a CommentBox."
+                );
+            }
+        });
+
+        ReactDOM.render(React.createElement(Text, null), document.getElementById('well'));
+*/
+        </script>
+    </body>
+</html>

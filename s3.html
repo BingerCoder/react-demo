@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <h1><span class="label label-info">DEMO 3</span></h1>
+        <br><br><br>
+        
+        
+        <div class="well" id="well">
+            
+        </div>
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/react.js"></script>
+        <script src="js/react-dom.js"></script>
+        <script src="js/browser.min.js"></script>
+
+        <script type="text/babel">
+        var Text = React.createClass({
+            getInitialState: function() {
+                return {name: "react"};
+            },
+            keyUp: function(e){
+                this.setState({name: e.target.value}, function(){
+                    console.log(this.state.name);
+                })
+                
+            },
+            render: function() {
+                return (
+                    <div className="a">
+                        大家好，我是用{this.state.name}渲染出来的！
+                        <input onKeyUp={this.keyUp} />
+                    </div>
+                );
+            }
+        });
+        
+        ReactDOM.render(
+            <Text></Text>,
+            document.getElementById('well')
+        );
+
+        </script>
+    </body>
+</html>
